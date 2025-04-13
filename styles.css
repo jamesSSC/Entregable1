@@ -186,7 +186,6 @@ footer {
         transform: translateY(-10px);
     }
 }
-
 /* Estilos para el "botón" de Videojuegos */
 #Videojuegos .boton-desplegable {
     cursor: pointer;
@@ -211,6 +210,39 @@ footer {
 #Videojuegos .boton-desplegado::after {
     content: '-';
 }
+
+/* Estilos para el "botón" de Videojuegos y su contenedor */
+#Videojuegos .contenedor > h2.boton-desplegable {
+    display: inline-block; /* Para que ocupe solo el ancho de su contenido y la imagen pueda estar a su lado */
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 10px;
+    margin-right: 10px; /* Espacio entre el texto y el icono */
+}
+
+/* Estilos para el icono de Videojuegos */
+.icono-videojuegos {
+    width: 30px; /* Ajusta el tamaño del icono */
+    height: auto;
+    vertical-align: middle; /* Alinea verticalmente con el texto */
+    animation: bounceVertical 1s infinite alternate; /* Aplica la animación */
+}
+
+/* Keyframes para la animación vertical de rebote (si no los tienes ya) */
+@keyframes bounceVertical {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); /* Ajusta la distancia del rebote */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* El resto de tu CSS para la sección de Videojuegos y las imágenes de los rangos se mantiene igual */
+
 
 /* Ocultar los detalles específicos de cada item de videojuego */
 .detalles-videojuego {
@@ -245,7 +277,7 @@ footer {
 .rango-videojuego-container {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center; /* ¡Aquí está el cambio para centrar! */
     margin-bottom: 5px;
 }
 
@@ -256,19 +288,6 @@ footer {
     margin-left: 10px;
     vertical-align: middle;
     animation: bounceVertical 1s infinite alternate; /* Mantenemos la animación */
-}
-
-/* Keyframes para la animación vertical de rebote */
-@keyframes bounceVertical {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px); /* Ajusta la distancia del rebote si lo deseas */
-    }
-    100% {
-        transform: translateY(0);
-    }
 }
 
 /* Ajustes para el texto del rango */
