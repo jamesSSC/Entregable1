@@ -227,7 +227,7 @@ footer {
 }
 /* Estilos para las imágenes de los videojuegos */
 #contenido-Videojuegos .Videojuegos-item img {
-    width: 100px; /* Ajusta el tamaño según lo necesites */
+    width: 300px; /* Ajusta el tamaño según lo necesites */
     height: auto;
     margin-bottom: 10px;
     border-radius: 5px; /* Opcional: bordes redondeados */
@@ -257,3 +257,46 @@ footer {
     text-align: left;
 }
 */
+/* Estilos para el contenedor del rango y la imagen */
+.rango-videojuego-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el texto y la imagen al centro */
+    justify-content: flex-start; /* Alinea los elementos al inicio (texto a la izquierda, imagen a la derecha) */
+    margin-bottom: 5px; /* Espacio debajo del rango con la imagen */
+}
+
+/* Estilos para la imagen del rango */
+.rango-videojuego-container img {
+    width: 30px; /* Ajusta el tamaño de la imagen del rango */
+    height: auto;
+    margin-left: 10px; /* Espacio entre el texto del rango y la imagen */
+    vertical-align: middle; /* Otra forma de alinear verticalmente */
+}
+
+/* Ajustes para el texto del rango */
+.rango-videojuego-container p.rango-videojuego {
+    margin-bottom: 0; /* Elimina el margen inferior predeterminado del párrafo */
+    margin-right: 5px; /* Opcional: espacio entre el texto y la imagen si justify-content es diferente */
+}
+
+/* Keyframes para la animación vertical de rebote */
+@keyframes bounceVertical {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); /* Ajusta la distancia del rebote */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Aplicar la animación a las imágenes de los rangos */
+.rango-videojuego-container img {
+    width: 30px; /* Ajusta el tamaño de la imagen del rango */
+    height: auto;
+    margin-left: 10px;
+    vertical-align: middle;
+    animation: bounceVertical 1s infinite alternate; /* Nombre de la animación, duración, repetición, dirección */
+}
