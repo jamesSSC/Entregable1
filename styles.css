@@ -225,3 +225,35 @@ footer {
 #contenido-Videojuegos.mostrar-detalles .detalles-videojuego {
     display: block;
 }
+/* Estilos para las imágenes de los videojuegos */
+#contenido-Videojuegos .Videojuegos-item img {
+    width: 100px; /* Ajusta el tamaño según lo necesites */
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px; /* Opcional: bordes redondeados */
+    display: block; /* Para que la imagen ocupe todo el ancho disponible y el texto se alinee correctamente */
+    margin-left: auto;
+    margin-right: auto; /* Centrar la imagen */
+}
+
+/* Opcional: Si quieres un diseño con la imagen a la izquierda del texto */
+/*
+#contenido-Videojuegos .Videojuegos-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#contenido-Videojuegos .Videojuegos-item img {
+    width: 80px;
+    height: auto;
+    margin-right: 15px;
+}
+
+#contenido-Videojuegos .Videojuegos-item h3,
+#contenido-Videojuegos .Videojuegos-item p {
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-align: left;
+}
+*/
