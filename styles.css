@@ -19,7 +19,8 @@ canvas {
     z-index: -1;
 }
 
-h1, h2 {
+h1,
+h2 {
     font-weight: 600;
 }
 
@@ -106,10 +107,25 @@ section {
     transition: width 1.5s ease;
 }
 
-.js { width: 90%; background: #f7df1e; }
-.python { width: 85%; background: #306998; }
-.htmlcss { width: 95%; background: #e34c26; }
-.react { width: 80%; background: #61dafb; }
+.js {
+    width: 90%;
+    background: #f7df1e;
+}
+
+.python {
+    width: 85%;
+    background: #306998;
+}
+
+.htmlcss {
+    width: 95%;
+    background: #e34c26;
+}
+
+.react {
+    width: 80%;
+    background: #61dafb;
+}
 
 .contenedor-proyectos {
     display: flex;
@@ -129,7 +145,7 @@ section {
 }
 
 .proyecto img {
-    width: 100%; 
+    width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 5px;
@@ -165,7 +181,47 @@ footer {
     from {
         transform: translateY(0);
     }
+
     to {
         transform: translateY(-10px);
     }
+}
+
+/* Estilos para el "botón" de Videojuegos */
+#Videojuegos .boton-desplegable {
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 10px;
+}
+
+/* Estilos para ocultar los detalles de Videojuegos inicialmente */
+#contenido-Videojuegos {
+    display: none;
+    overflow: hidden;
+}
+
+/* Opcional: Estilo para el indicador de desplegable (el signo "+") */
+#Videojuegos .boton-desplegable::after {
+    content: '+';
+    float: right;
+    margin-left: 5px;
+}
+
+/* Opcional: Estilo para el indicador cuando está desplegado (el signo "-") */
+#Videojuegos .boton-desplegado::after {
+    content: '-';
+}
+
+/* Ocultar los detalles específicos de cada item de videojuego */
+.detalles-videojuego {
+    display: none;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #ccc;
+    /* Un color más suave para los detalles */
+}
+
+/* Mostrar los detalles cuando el contenido de videojuegos está visible */
+#contenido-Videojuegos.mostrar-detalles .detalles-videojuego {
+    display: block;
 }

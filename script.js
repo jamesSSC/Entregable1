@@ -14,7 +14,7 @@ class Particle {
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
         this.color = this.randomColor(); 
-        this.shape = Math.random() < 0.5 ? 'circle' : 'square'; 
+        this.shape = Math.random() < 0.5 ? 'circle' : 'square';
     }
 
     randomColor() {
@@ -58,3 +58,40 @@ function animate() {
 
 initParticles();
 animate();
+
+// --- Añadir esta parte al final de tu script.js ---
+document.addEventListener('DOMContentLoaded', function() {
+    const botonVideojuegos = document.querySelector('#Videojuegos .boton-desplegable');
+    const contenidoVideojuegos = document.getElementById('contenido-Videojuegos');
+    const itemsVideojuegos = document.querySelectorAll('#contenido-Videojuegos .Videojuegos-item');
+
+    if (botonVideojuegos && contenidoVideojuegos) {
+        botonVideojuegos.addEventListener('click', function() {
+            // Cambiar la visibilidad del contenido completo de videojuegos
+            contenidoVideojuegos.style.display = contenidoVideojuegos.style.display === 'none' ? 'block' : 'none';
+            botonVideojuegos.classList.toggle('boton-desplegado');
+
+            // Mostrar todos los detalles dentro de los items al desplegar
+            if (contenidoVideojuegos.style.display === 'block') {
+                contenidoVideojuegos.classList.add('mostrar-detalles');
+            } else {
+                contenidoVideojuegos.classList.remove('mostrar-detalles');
+            }
+        });
+
+        // Opcional: Hacer que cada item se despliegue individualmente al hacer clic en su encabezado (h3)
+        itemsVideojuegos.forEach(item => {
+            const encabezadoItem = item.querySelector('h3');
+            const detallesItem = item.querySelectorAll('.detalles-videojuego');
+
+            if (encabezadoItem && detallesItem.length > 0) {
+                encabezadoItem.style.cursor = 'pointer'; // Indicar que es clickable
+                encabezadoItem.addEventListener('click', function() {
+                    detallesItem.forEach(detalle => {
+                        detalle.style.display = detalle.style.display === 'none' ? 'block' : 'none';
+                    });
+                });
+            }
+        });
+    }
+});
