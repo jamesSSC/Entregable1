@@ -225,58 +225,37 @@ footer {
 #contenido-Videojuegos.mostrar-detalles .detalles-videojuego {
     display: block;
 }
-/* Estilos para las imágenes de los videojuegos */
-#contenido-Videojuegos .Videojuegos-item img {
-    width: 300px; /* Ajusta el tamaño según lo necesites */
+
+
+
+/* Estilos para las imágenes principales de los videojuegos */
+#contenido-Videojuegos .Videojuegos-item > img { /* Usamos el selector de hijo directo */
+    width: 300px;
     height: auto;
+    margin-top: 10px;
     margin-bottom: 10px;
-    border-radius: 5px; /* Opcional: bordes redondeados */
-    display: block; /* Para que la imagen ocupe todo el ancho disponible y el texto se alinee correctamente */
+    border-radius: 5px;
+    display: block;
     margin-left: auto;
-    margin-right: auto; /* Centrar la imagen */
+    margin-right: auto;
+    animation: none; /* Removemos cualquier animación aplicada directamente a estas imágenes */
 }
 
-/* Opcional: Si quieres un diseño con la imagen a la izquierda del texto */
-/*
-#contenido-Videojuegos .Videojuegos-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-#contenido-Videojuegos .Videojuegos-item img {
-    width: 80px;
-    height: auto;
-    margin-right: 15px;
-}
-
-#contenido-Videojuegos .Videojuegos-item h3,
-#contenido-Videojuegos .Videojuegos-item p {
-    margin-top: 0;
-    margin-bottom: 5px;
-    text-align: left;
-}
-*/
 /* Estilos para el contenedor del rango y la imagen */
 .rango-videojuego-container {
     display: flex;
-    align-items: center; /* Alinea verticalmente el texto y la imagen al centro */
-    justify-content: flex-start; /* Alinea los elementos al inicio (texto a la izquierda, imagen a la derecha) */
-    margin-bottom: 5px; /* Espacio debajo del rango con la imagen */
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 5px;
 }
 
-/* Estilos para la imagen del rango */
+/* Estilos para las imágenes del rango */
 .rango-videojuego-container img {
-    width: 30px; /* Ajusta el tamaño de la imagen del rango */
+    width: 50px; /* Tamaño para las imágenes de los rangos */
     height: auto;
-    margin-left: 10px; /* Espacio entre el texto del rango y la imagen */
-    vertical-align: middle; /* Otra forma de alinear verticalmente */
-}
-
-/* Ajustes para el texto del rango */
-.rango-videojuego-container p.rango-videojuego {
-    margin-bottom: 0; /* Elimina el margen inferior predeterminado del párrafo */
-    margin-right: 5px; /* Opcional: espacio entre el texto y la imagen si justify-content es diferente */
+    margin-left: 10px;
+    vertical-align: middle;
+    animation: bounceVertical 1s infinite alternate; /* Mantenemos la animación */
 }
 
 /* Keyframes para la animación vertical de rebote */
@@ -285,18 +264,15 @@ footer {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-5px); /* Ajusta la distancia del rebote */
+        transform: translateY(-5px); /* Ajusta la distancia del rebote si lo deseas */
     }
     100% {
         transform: translateY(0);
     }
 }
 
-/* Aplicar la animación a las imágenes de los rangos */
-.rango-videojuego-container img {
-    width: 30px; /* Ajusta el tamaño de la imagen del rango */
-    height: auto;
-    margin-left: 10px;
-    vertical-align: middle;
-    animation: bounceVertical 1s infinite alternate; /* Nombre de la animación, duración, repetición, dirección */
+/* Ajustes para el texto del rango */
+.rango-videojuego-container p.rango-videojuego {
+    margin-bottom: 0;
+    margin-right: 5px;
 }
