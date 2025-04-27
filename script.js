@@ -1,77 +1,18 @@
-const canvas = document.getElementById('background');
-const ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const particles = [];
-
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 6 + 5; 
-        this.speedX = Math.random() * 2 - 1;
-        this.speedY = Math.random() * 2 - 1;
-        this.color = this.randomColor(); 
-        this.shape = Math.random() < 0.5 ? 'circle' : 'square';
-    }
-
-    randomColor() {
-        const colors = ['#FF5733', '#33FF57', '#3357FF', '#F0F033', '#F033A1', '#33FFF0'];
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-    }
-
-    draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        if (this.shape === 'circle') {
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        } else {
-            ctx.rect(this.x, this.y, this.size * 2, this.size * 2);
-        }
-        ctx.fill();
-    }
-}
-
-function initParticles() {
-    for (let i = 0; i < 100; i++) {
-        particles.push(new Particle());
-    }
-}
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-        p.update();
-        p.draw();
-    });
-    requestAnimationFrame(animate);
-}
-
-initParticles();
-animate();
-
-// --- Añadir esta parte al final de tu script.js ---
 document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('login-form');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const errorMessageDiv = document.getElementById('error-message');
+    const loginSection = document.getElementById('login-section');
+    const portfolioContent = document.getElementById('portfolio-content');
     const botonVideojuegos = document.querySelector('#Videojuegos .boton-desplegable');
     const contenidoVideojuegos = document.getElementById('contenido-Videojuegos');
     const itemsVideojuegos = document.querySelectorAll('#contenido-Videojuegos .Videojuegos-item');
 
     if (botonVideojuegos && contenidoVideojuegos) {
         botonVideojuegos.addEventListener('click', function() {
-            // Cambiar la visibilidad del contenido completo de videojuegos
             contenidoVideojuegos.style.display = contenidoVideojuegos.style.display === 'none' ? 'block' : 'none';
             botonVideojuegos.classList.toggle('boton-desplegado');
-
-            // Mostrar todos los detalles dentro de los items al desplegar
             if (contenidoVideojuegos.style.display === 'block') {
                 contenidoVideojuegos.classList.add('mostrar-detalles');
             } else {
@@ -79,13 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Opcional: Hacer que cada item se despliegue individualmente al hacer clic en su encabezado (h3)
         itemsVideojuegos.forEach(item => {
             const encabezadoItem = item.querySelector('h3');
             const detallesItem = item.querySelectorAll('.detalles-videojuego');
 
             if (encabezadoItem && detallesItem.length > 0) {
-                encabezadoItem.style.cursor = 'pointer'; // Indicar que es clickable
+                encabezadoItem.style.cursor = 'pointer';
                 encabezadoItem.addEventListener('click', function() {
                     detallesItem.forEach(detalle => {
                         detalle.style.display = detalle.style.display === 'none' ? 'block' : 'none';
@@ -93,5 +33,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            fetch('users.json')
+                .then(response => response.json())
+                .then(users => {
+                    const user = users.find(u => u.username === username && u.password === password);
+
+                    if (user) {
+                        // Inicio de sesión exitoso
+                        loginSection.style.display = 'none';
+                        portfolioContent.style.display = 'block';
+                    } else {
+                        // Credenciales incorrectas
+                        errorMessageDiv.textContent = 'Usuario o contraseña incorrectos.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar el archivo JSON:', error);
+                    errorMessageDiv.textContent = 'Ocurrió un error al intentar iniciar sesión.';
+                });
+        });
+    } else {
+        console.error('El formulario de login no se encontró en el HTML.');
     }
 });
