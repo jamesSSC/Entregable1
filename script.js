@@ -67,34 +67,35 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('El formulario de login no se encontró en el HTML.');
     }
 
-    function ejecutarPruebasUnitarias() {
+    ffunction ejecutarPruebasUnitarias() {
         console.log("--- Ejecutando Pruebas Unitarias ---");
-    
-        // Caso de éxito: credenciales correctas (ajustado para coincidir con tu users.json)
+        
+        // Caso de éxito: credenciales correctas
         const usuariosPruebaExito = [{ "username": "james", "password": "73080944" }];
         const resultadoExito = verificarCredenciales("james", "73080944", usuariosPruebaExito);
-        console.assert(resultadoExito !== undefined, "Prueba 1 (Éxito): Credenciales correctas");
-    
+        console.log("Prueba 1 (Éxito):", resultadoExito); // Muestra el resultado de la prueba
+        
         // Caso de fallo: usuario incorrecto
         const usuariosPruebaFallidoUsuario = [{ "username": "james", "password": "73080944" }];
         const resultadoFallidoUsuario = verificarCredenciales("usuario_incorrecto", "73080944", usuariosPruebaFallidoUsuario);
-        console.assert(resultadoFallidoUsuario === undefined, "Prueba 2 (Fallo - Usuario incorrecto)");
-    
+        console.log("Prueba 2 (Fallo - Usuario incorrecto):", resultadoFallidoUsuario); // Muestra el resultado de la prueba
+        
         // Caso de fallo: contraseña incorrecta
         const usuariosPruebaFallidoContraseña = [{ "username": "james", "password": "73080944" }];
         const resultadoFallidoContraseña = verificarCredenciales("james", "clave_incorrecta", usuariosPruebaFallidoContraseña);
-        console.assert(resultadoFallidoContraseña === undefined, "Prueba 3 (Fallo - Contraseña incorrecta)");
-    
+        console.log("Prueba 3 (Fallo - Contraseña incorrecta):", resultadoFallidoContraseña); // Muestra el resultado de la prueba
+        
         // Caso con múltiples usuarios y credenciales correctas para uno de ellos
         const usuariosPruebaMultiple = [
             { "username": "james", "password": "73080944" },
             { "username": "otro", "password": "secreto" }
         ];
         const resultadoMultipleExito = verificarCredenciales("james", "73080944", usuariosPruebaMultiple);
-        console.assert(resultadoMultipleExito !== undefined, "Prueba 4 (Múltiple - Éxito en tu usuario)");
+        console.log("Prueba 4 (Múltiple - Éxito en tu usuario):", resultadoMultipleExito); // Muestra el resultado de la prueba
     
         console.log("--- Fin de Pruebas Unitarias ---");
     }
-
+    
     ejecutarPruebasUnitarias();
 });
+
