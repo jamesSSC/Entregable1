@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const contenidoVideojuegos = document.getElementById('contenido-Videojuegos');
     const itemsVideojuegos = document.querySelectorAll('#contenido-Videojuegos .Videojuegos-item');
 
+    function verificarCredenciales(username, password, users) {
+        return users.find(u => u.username === username && u.password === password);
+    }
+
     if (botonVideojuegos && contenidoVideojuegos) {
         botonVideojuegos.addEventListener('click', function() {
             contenidoVideojuegos.style.display = contenidoVideojuegos.style.display === 'none' ? 'block' : 'none';
@@ -45,14 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch('users.json')
                 .then(response => response.json())
                 .then(users => {
-                    const user = users.find(u => u.username === username && u.password === password);
+                    const usuarioAutenticado = verificarCredenciales(username, password, users);
 
-                    if (user) {
-                        // Inicio de sesión exitoso
+                    if (usuarioAutenticado) {
                         loginSection.style.display = 'none';
                         portfolioContent.style.display = 'block';
                     } else {
-                        // Credenciales incorrectas
                         errorMessageDiv.textContent = 'Usuario o contraseña incorrectos.';
                     }
                 })
@@ -64,4 +66,35 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('El formulario de login no se encontró en el HTML.');
     }
+
+    function ejecutarPruebasUnitarias() {
+        console.log("--- Ejecutando Pruebas Unitarias ---");
+
+        // Caso de éxito: credenciales correctas
+        const usuariosPruebaExito = [{ "username": "james", "password": "miportafolio" }];
+        const resultadoExito = verificarCredenciales("james", "miportafolio", usuariosPruebaExito);
+        console.assert(resultadoExito !== undefined, "Prueba 1 (Éxito): Credenciales correctas");
+
+        // Caso de fallo: usuario incorrecto
+        const usuariosPruebaFallidoUsuario = [{ "username": "james", "password": "miportafolio" }];
+        const resultadoFallidoUsuario = verificarCredenciales("usuario_incorrecto", "miportafolio", usuariosPruebaFallidoUsuario);
+        console.assert(resultadoFallidoUsuario === undefined, "Prueba 2 (Fallo - Usuario incorrecto)");
+
+        // Caso de fallo: contraseña incorrecta
+        const usuariosPruebaFallidoContraseña = [{ "username": "james", "password": "miportafolio" }];
+        const resultadoFallidoContraseña = verificarCredenciales("james", "clave_incorrecta", usuariosPruebaFallidoContraseña);
+        console.assert(resultadoFallidoContraseña === undefined, "Prueba 3 (Fallo - Contraseña incorrecta)");
+
+        // Caso con múltiples usuarios y credenciales correctas para uno de ellos
+        const usuariosPruebaMultiple = [
+            { "username": "james", "password": "miportafolio" },
+            { "username": "otro", "password": "secreto" }
+        ];
+        const resultadoMultipleExito = verificarCredenciales("otro", "secreto", usuariosPruebaMultiple);
+        console.assert(resultadoMultipleExito !== undefined, "Prueba 4 (Múltiple - Éxito en otro usuario)");
+
+        console.log("--- Fin de Pruebas Unitarias ---");
+    }
+
+    ejecutarPruebasUnitarias();
 });
