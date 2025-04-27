@@ -73,16 +73,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Caso de éxito: credenciales correctas (ajustado para coincidir con tu users.json)
         const usuariosPruebaExito = [{ "username": "james", "password": "73080944" }];
         const resultadoExito = verificarCredenciales("james", "73080944", usuariosPruebaExito);
+        console.log('Resultado de prueba 1 (Éxito):', resultadoExito);  // Agrega un log aquí
         console.assert(resultadoExito !== undefined, "Prueba 1 (Éxito): Credenciales correctas");
     
         // Caso de fallo: usuario incorrecto
         const usuariosPruebaFallidoUsuario = [{ "username": "james", "password": "73080944" }];
         const resultadoFallidoUsuario = verificarCredenciales("usuario_incorrecto", "73080944", usuariosPruebaFallidoUsuario);
+        console.log('Resultado de prueba 2 (Fallo - Usuario incorrecto):', resultadoFallidoUsuario);  // Agrega un log aquí
         console.assert(resultadoFallidoUsuario === undefined, "Prueba 2 (Fallo - Usuario incorrecto)");
     
         // Caso de fallo: contraseña incorrecta
         const usuariosPruebaFallidoContraseña = [{ "username": "james", "password": "73080944" }];
         const resultadoFallidoContraseña = verificarCredenciales("james", "clave_incorrecta", usuariosPruebaFallidoContraseña);
+        console.log('Resultado de prueba 3 (Fallo - Contraseña incorrecta):', resultadoFallidoContraseña);  // Agrega un log aquí
         console.assert(resultadoFallidoContraseña === undefined, "Prueba 3 (Fallo - Contraseña incorrecta)");
     
         // Caso con múltiples usuarios y credenciales correctas para uno de ellos
@@ -91,10 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
             { "username": "otro", "password": "secreto" }
         ];
         const resultadoMultipleExito = verificarCredenciales("james", "73080944", usuariosPruebaMultiple);
+        console.log('Resultado de prueba 4 (Múltiple - Éxito en tu usuario):', resultadoMultipleExito);  // Agrega un log aquí
         console.assert(resultadoMultipleExito !== undefined, "Prueba 4 (Múltiple - Éxito en tu usuario)");
     
         console.log("--- Fin de Pruebas Unitarias ---");
-    }
+    } 
 
     ejecutarPruebasUnitarias();
 });
+
