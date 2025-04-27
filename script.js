@@ -71,23 +71,23 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("--- Ejecutando Pruebas Unitarias ---");
 
         // Caso de éxito: credenciales correctas
-        const usuariosPruebaExito = [{ "username": "james", "password": "miportafolio" }];
-        const resultadoExito = verificarCredenciales("james", "miportafolio", usuariosPruebaExito);
+        const usuariosPruebaExito = [{ "username": "james", "password": "73080944" }];
+        const resultadoExito = verificarCredenciales("james", "73080944", usuariosPruebaExito);
         console.assert(resultadoExito !== undefined, "Prueba 1 (Éxito): Credenciales correctas");
 
         // Caso de fallo: usuario incorrecto
-        const usuariosPruebaFallidoUsuario = [{ "username": "james", "password": "miportafolio" }];
-        const resultadoFallidoUsuario = verificarCredenciales("usuario_incorrecto", "miportafolio", usuariosPruebaFallidoUsuario);
+        const usuariosPruebaFallidoUsuario = [{ "username": "james", "password": "73080944" }];
+        const resultadoFallidoUsuario = verificarCredenciales("usuario_incorrecto", "73080944", usuariosPruebaFallidoUsuario);
         console.assert(resultadoFallidoUsuario === undefined, "Prueba 2 (Fallo - Usuario incorrecto)");
 
         // Caso de fallo: contraseña incorrecta
-        const usuariosPruebaFallidoContraseña = [{ "username": "james", "password": "miportafolio" }];
+        const usuariosPruebaFallidoContraseña = [{ "username": "james", "password": "73080944" }];
         const resultadoFallidoContraseña = verificarCredenciales("james", "clave_incorrecta", usuariosPruebaFallidoContraseña);
         console.assert(resultadoFallidoContraseña === undefined, "Prueba 3 (Fallo - Contraseña incorrecta)");
 
         // Caso con múltiples usuarios y credenciales correctas para uno de ellos
         const usuariosPruebaMultiple = [
-            { "username": "james", "password": "miportafolio" },
+            { "username": "james", "password": "73080944" },
             { "username": "otro", "password": "secreto" }
         ];
         const resultadoMultipleExito = verificarCredenciales("otro", "secreto", usuariosPruebaMultiple);
