@@ -70,9 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function ejecutarPruebasUnitarias() {
         console.log("--- Ejecutando Pruebas Unitarias ---");
     
-        // Caso de éxito: credenciales correctas 
+        // Caso de éxito: credenciales correctas
         const usuariosPruebaExito = [{ "username": "james", "password": "73080944" }];
         const resultadoExito = verificarCredenciales("james", "73080944", usuariosPruebaExito);
+        console.log("Resultado de la prueba de éxito:", resultadoExito); // <--- Línea añadida
         console.assert(resultadoExito !== undefined, "Prueba 1 (Éxito): Credenciales correctas");
     
         // Caso de fallo: usuario incorrecto
