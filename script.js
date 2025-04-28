@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return users.find(u => u.username === username && u.password === password);
     }
 
+    // Función para manejar el desplegable de videojuegos
     if (botonVideojuegos && contenidoVideojuegos) {
         botonVideojuegos.addEventListener('click', function() {
             contenidoVideojuegos.style.display = contenidoVideojuegos.style.display === 'none' ? 'block' : 'none';
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Verificación de credenciales al enviar el formulario de login
     if (loginForm) {
         loginForm.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         portfolioContent.style.display = 'block';
                     } else {
                         errorMessageDiv.textContent = 'Usuario o contraseña incorrectos.';
+                        console.log('Credenciales incorrectas: ' + username + ', ' + password);  // Agregado para log en consola
                     }
                 })
                 .catch(error => {
@@ -67,39 +70,39 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('El formulario de login no se encontró en el HTML.');
     }
 
+    // Función para ejecutar pruebas unitarias
     function ejecutarPruebasUnitarias() {
         console.log("--- Ejecutando Pruebas Unitarias ---");
-    
-        // Caso de éxito: credenciales correctas (ajustado para coincidir con tu users.json)
+
+        // Caso de éxito: credenciales correctas
         const usuariosPruebaExito = [{ "username": "james", "password": "73080944" }];
         const resultadoExito = verificarCredenciales("james", "73080944", usuariosPruebaExito);
-        console.log('Resultado de prueba 1 (Éxito):', resultadoExito);  // Agrega un log aquí
+        console.log('Resultado de prueba 1 (Éxito):', resultadoExito);
         console.assert(resultadoExito !== undefined, "Prueba 1 (Éxito): Credenciales correctas");
-    
+
         // Caso de fallo: usuario incorrecto
         const usuariosPruebaFallidoUsuario = [{ "username": "james", "password": "73080944" }];
         const resultadoFallidoUsuario = verificarCredenciales("usuario_incorrecto", "73080944", usuariosPruebaFallidoUsuario);
-        console.log('Resultado de prueba 2 (Fallo - Usuario incorrecto):', resultadoFallidoUsuario);  // Agrega un log aquí
+        console.log('Resultado de prueba 2 (Fallo - Usuario incorrecto):', resultadoFallidoUsuario);
         console.assert(resultadoFallidoUsuario === undefined, "Prueba 2 (Fallo - Usuario incorrecto)");
-    
+
         // Caso de fallo: contraseña incorrecta
         const usuariosPruebaFallidoContraseña = [{ "username": "james", "password": "73080944" }];
         const resultadoFallidoContraseña = verificarCredenciales("james", "clave_incorrecta", usuariosPruebaFallidoContraseña);
-        console.log('Resultado de prueba 3 (Fallo - Contraseña incorrecta):', resultadoFallidoContraseña);  // Agrega un log aquí
+        console.log('Resultado de prueba 3 (Fallo - Contraseña incorrecta):', resultadoFallidoContraseña);
         console.assert(resultadoFallidoContraseña === undefined, "Prueba 3 (Fallo - Contraseña incorrecta)");
-    
+
         // Caso con múltiples usuarios y credenciales correctas para uno de ellos
         const usuariosPruebaMultiple = [
             { "username": "james", "password": "73080944" },
             { "username": "otro", "password": "secreto" }
         ];
         const resultadoMultipleExito = verificarCredenciales("james", "73080944", usuariosPruebaMultiple);
-        console.log('Resultado de prueba 4 (Múltiple - Éxito en tu usuario):', resultadoMultipleExito);  // Agrega un log aquí
+        console.log('Resultado de prueba 4 (Múltiple - Éxito en tu usuario):', resultadoMultipleExito);
         console.assert(resultadoMultipleExito !== undefined, "Prueba 4 (Múltiple - Éxito en tu usuario)");
-    
+
         console.log("--- Fin de Pruebas Unitarias ---");
-    } 
+    }
 
     ejecutarPruebasUnitarias();
 });
-
